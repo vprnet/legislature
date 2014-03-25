@@ -1,0 +1,21 @@
+{% import "_macros.html" as macros %}
+{% for feature in featured %}
+<div class="row">
+    <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1">
+        <div class="featured">
+            <h3><a href="{{ feature.link }}" alt="{{ feature.title }}">{{ feature.title }}</a></h3>
+            <div class="content_box">
+                <img class="img-responsive" src="{{ url_for('static', filename=feature.image) }}">
+                {% for paragraph in feature.text %}
+                    <p>{{ paragraph }}</p>
+                {% endfor %}
+                {% if feature.audio %}
+                    {{ macros.player(feature.audio.mp3, feature.audio.duration, "Listen To Report") }}
+                {% endif %}
+                <p class="listen"><span class="file glyphicon glyphicon-file"></span> <a href="{{ feature.link }}">Read the Article</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

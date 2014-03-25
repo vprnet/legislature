@@ -1,0 +1,10 @@
+#mobile_h1 {
+    color: white;
+    text-align: center;
+    h1 {
+        background: lighten($blue, 5%);
+        font-size: 22px;
+        padding: 10px 0;
+        margin-top: 0;
+    }
+}

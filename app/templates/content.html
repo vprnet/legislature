@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}{{ page_title }} | VPR News{% endblock %}
+
+{% block header_title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div id="left_panel" class="col-md-7 col-lg-8">
+            {% include "_mobile_title.html" %}
+            {% include "_story_card.html" %}
+        </div>
+        <div id="right_panel" class="col-md-5 col-lg-4">
+            {% include "_explainer.html" %}
+            {% include "_streams.html" %}
+            {% include "_reporters.html" %}
+            {% include "_resources.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script-ck.js') }}"></script>
+{% endblock %}
