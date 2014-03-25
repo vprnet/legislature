@@ -1,20 +1,13 @@
-#VPR Topic Pages
+#VPR Legislature Page
 
-We use this template to generate pages like this:
-[Health Care Home](http://www.vpr.net/apps/health)
-
-##How They Work
-
-At VPR, we tweak a few lines in `apps/views.py` and spin up a topic landing page for any NPR API tag.
-
-Other NPR member stations would need to change a bit more, primarily the styling and templates but also a few lines in `app.query.py`. If there is interest, I might further abstract things so that the station could be changed just as easily as the API tags.
+This project is based on the [VPR Topic Page Template](https://github.com/vprnet/topic-page) which allows us to quickly spin up topic pages using NPR Story API IDs.
 
 ## Author
 [Matt Parrilla](http://twitter.com/mattparrilla)
 
 ##Copyright and License
 
-Copyright 2013 Vermont Public Radio
+Copyright 2014 Vermont Public Radio
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License.
 You may obtain a copy of the License in the LICENSE file, or at:

@@ -20,11 +20,10 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
 
 {% include "_social.html" %}
-{% block underwriter %}{% include "_underwriter_script.html" %}{% endblock %}
+{% include "_underwriter_script.html" %}
 {% include "_analytics.html" %}
 
 </head>
@@ -32,7 +31,7 @@
 <body>
 
 <div id="page_container">
-{% block navbar %}{% include "_navbar.html" %}{% endblock %}
+{% include "_navbar.html" %}
 
 {% block content %}{% endblock %}
 </div>
