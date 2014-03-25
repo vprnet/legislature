@@ -3887,6 +3887,8 @@ div.audio_player {
         padding: 10px 25px 8px; } }
   div.audio_player .duration {
     right: 10px; }
+  div.audio_player .audio_title {
+    left: 0; }
 
 #right_panel img {
   margin: 0 auto; }
