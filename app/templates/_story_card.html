@@ -9,12 +9,14 @@
         {% endif %}
         <p class="dateline">{{ story.date }}</p>
         <h2 class="title"><a href="{{ story.link }}">{{ story.title }}</a></h2>
-        <p class="byline">
-        {% if story.byline.url %}
-            By <a href="{{ story.byline.url }}" alt="{{ story.byline.name }} bio">{{ story.byline.name|upper }}</a>
-        {% else %}
-        By {{ story.byline.name|upper }}
-        {% endif %}</p>
+        {% if story.byline %}
+            <p class="byline">
+            {% if story.byline.url %}
+                By <a href="{{ story.byline.url }}" alt="{{ story.byline.name }} bio">{{ story.byline.name|upper }}</a>
+            {% else %}
+            By {{ story.byline.name|upper }}
+            {% endif %}</p>
+        {% endif %}
         <div class="row story_text">
             {% if story.image and not story.landscape %}
             <div class="col-sm-4 vertical_img">

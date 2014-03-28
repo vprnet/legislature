@@ -22,8 +22,11 @@ def api_feed(tag, numResults=1, char_limit=240, thumbnail=False, sidebar=False):
         date = convert_date(story['storyDate']['$text'])
         title = story['title']['$text'].strip()
         byline = {}
-        byline['name'] = story['byline'][0]['name']['$text']
-        byline['url'] = story['byline'][0]['link'][0]['$text']
+        try:
+            byline['name'] = story['byline'][0]['name']['$text']
+            byline['url'] = story['byline'][0]['link'][0]['$text']
+        except KeyError:
+            byline = False
 
         try:  # if there's an image, determine orientation and define boundary
             story_image = story['image'][0]['crop'][0]
@@ -96,7 +99,10 @@ def reporter_list(tag, numResults=50):
     name_list = []
     reporters = []
     for story in stories:
-        name = story['byline'][0]['name']['$text']
+        try:
+            name = story['byline'][0]['name']['$text']
+        except KeyError:
+            continue
         if name not in name_list:
             name_list.append(name)
             byline = {}
