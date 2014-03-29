@@ -19,7 +19,7 @@
         {% endif %}
         <div class="row story_text">
             {% if story.image and not story.landscape %}
-            <div class="col-sm-4 vertical_img">
+            <div class="col-sm-4 vertical_img col-xs-12">
                 <a href="{{ story.link }}"><img src="{{ url_for('static', filename=story.image) }}" class="img-responsive pull-left" alt="{{ story.title }}"></a>
             </div>
             <div class="col-sm-8">
