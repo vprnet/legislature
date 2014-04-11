@@ -126,6 +126,3 @@ def set_metadata():
         k.set_metadata('ETag', etag_hash)
         k.set_contents_from_filename(f)
         k.make_public()
-
-    print '\nLegislature page successfully updated'
-    print "On " + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
