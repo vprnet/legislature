@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import json
 import requests
-import Image
-import ImageOps
+from PIL import Image
+from PIL import ImageOps
 import urllib
 import os
 from bs4 import BeautifulSoup as Soup
@@ -90,52 +90,6 @@ def api_feed(tag, numResults=1, char_limit=240, thumbnail=False, sidebar=False):
     return story_list
 
 
-def reporter_list(tag, numResults=50):
-    """Queries the API for bylines and returns an ordered list of name
-    and a path to a photo. Reporters ordered by number of stories"""
-
-    stories = query_api(tag, numResults)
-
-    name_list = []
-    reporters = []
-    for story in stories:
-        try:
-            name = story['byline'][0]['name']['$text']
-        except KeyError:
-            continue
-        if name not in name_list:
-            name_list.append(name)
-            byline = {}
-            byline['name'] = name
-            try:
-                url = story['byline'][0]['link'][0]['$text']
-                byline['url'] = url
-                byline['image_src'] = reporter_image(url)
-                byline['count'] = 1
-                reporters.append(byline)
-            except KeyError:
-                pass
-        else:
-            for reporter in reporters:
-                if reporter['name'] == name:
-                    reporter['count'] += 1
-
-    reporters = sorted(reporters, key=lambda k: k['count'], reverse=True)
-
-    with open(ABSOLUTE_PATH + 'static/data/twitter.json') as f:
-        twitter_dict = json.load(f)
-
-    ranked_list = []
-    for reporter in reporters:
-        for twitter in twitter_dict['reporters']:
-            if reporter['name'] == twitter['name']:
-                reporter['handle'] = twitter['handle']
-        if reporter['image_src'] and reporter['count'] > 1:
-            ranked_list.append(reporter)
-
-    return ranked_list
-
-
 def query_api(tag, numResults=10):
     """Hits the NPR API, returns JSON story list"""
 
@@ -154,23 +108,6 @@ def query_api(tag, numResults=10):
     stories = j['list']['story']
 
     return stories
-
-
-def reporter_image(url):
-    """Takes reporter URL from byline and returns URL to reporter's image"""
-
-    r = requests.get(url)
-    page = r.text
-    soup = Soup(page)
-    person_card = soup.find_all(id="person-card")[0]
-    try:
-        image = person_card.find_all('img')[0].get('src')
-        thumbnail = generate_thumbnail(image, size=(100, 100))
-    except IndexError:
-        image = False
-        thumbnail = False
-
-    return thumbnail
 
 
 def generate_thumbnail(image_url, preserve_ratio=False, size=(220, 165)):

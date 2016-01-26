@@ -1,5 +1,5 @@
 from index import app
-from query import api_feed, reporter_list
+from query import api_feed
 from flask import render_template, request
 from config import BASE_URL
 
@@ -12,7 +12,6 @@ def index():
     page_explainer = ["VPR's guide to the Vermont Legislature. Latest coverage, statehouse streams and legislative resources, all in one place."]
     stories = api_feed(tags, numResults=10, thumbnail=True)
     featured = api_feed([291752955, 292002570], numResults=2, thumbnail=True, sidebar=True)
-    reporters = reporter_list(tags)
 
     social = {
         'title': "VPR: Vermont Legislature 2014",
@@ -29,5 +28,4 @@ def index():
         stories=stories,
         social=social,
         featured=featured,
-        reporters=reporters,
         page_url=page_url)

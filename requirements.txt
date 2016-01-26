@@ -2,8 +2,8 @@ Flask==0.10.1
 Frozen-Flask==0.11
 Jinja2==2.7.1
 MarkupSafe==0.18
-PIL==1.1.7
 Werkzeug==0.9.4
+Pillow==2.8.1
 beautifulsoup4==4.3.2
 boto==2.18.0
 gunicorn==18.0
